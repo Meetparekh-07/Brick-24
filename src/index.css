@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* LEGO-inspired design tokens */
+@theme {
+  --color-lego-red: #e3000b;
+  --color-lego-yellow: #ffd500;
+  --color-lego-blue: #0057b8;
+  --color-lego-green: #00a651;
+  --color-off-white: #f7f4ea;
+  --color-dark: #111111;
+  --color-dark-muted: #333333;
+  --color-border: #111111;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --shadow-brick: 4px 4px 0 0 #111111;
+  --shadow-brick-sm: 3px 3px 0 0 #111111;
+  --shadow-brick-lg: 6px 6px 0 0 #111111;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-off-white text-dark font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-lego-yellow text-dark;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-lego-blue;
+  }
+}
+
+@layer utilities {
+  /* Blueprint grid — subtle construction-paper background */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(0, 87, 184, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 87, 184, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .shadow-brick {
+    box-shadow: var(--shadow-brick);
+  }
+
+  .shadow-brick-sm {
+    box-shadow: var(--shadow-brick-sm);
+  }
+
+  .shadow-brick-lg {
+    box-shadow: var(--shadow-brick-lg);
+  }
+}
