@@ -169,7 +169,15 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' })
 })
 
-app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`)
+const distPath = path.join(__dirname, '..', 'dist')
+
+app.use(express.static(distPath))
+
+app.get('/{*splat}', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'))
+})
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`)
   console.log(`Registrations stored in: ${registrationsFile}`)
 })
